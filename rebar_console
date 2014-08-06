@@ -1,4 +1,5 @@
 #!/bin/bash
 
+./rebar get-deps
 ./rebar -C rebar.config compile
-erl -pa ebin deps/*/ebin -s lager 
+erl -pa ebin deps/*/ebin -s lager -s example run

@@ -22,9 +22,11 @@
 
 -module(example).
 
--export([run/0]).
+-export([run/0, run/1]).
 
 run() ->
+    run(8087).
+run(RiakPort) ->
     lager:info("started example"),
 Reading = riakc_map:new(),
 
@@ -44,7 +46,7 @@ Reading3 = riakc_map:update({<<"ReaderName5555">>, register}, fun(R) -> riakc_re
 lager:info("Reading3 : ~p ",[Reading3]),
 
 %% Start connection to riak.
-{ok, Pid} = riakc_pb_socket:start("localhost", 10017),
+{ok, Pid} = riakc_pb_socket:start("localhost", RiakPort),
 
 %% Write to riak no need to read first.
 %% {Bucket Type, Bucket}
@@ -68,12 +70,12 @@ lager:info("Results: ~p ",[Results]),
 
 ReaderName322323 = riakc_map:fetch({<<"ReaderName322323">>, register}, Results),
 
-lager:info("ReaderName322323: ~p ",[Results]),
+lager:info("ReaderName322323: ~p ",[ReaderName322323]),
 
 %% <<0,0,31,64>>
-riakc_map:fetch({<<"ReaderName5555">>, register}, Results),
+ReaderName5555 = riakc_map:fetch({<<"ReaderName5555">>, register}, Results),
 
 
-lager:info("ReaderName5555 : ~p ",[Results]),
+lager:info("ReaderName5555 : ~p ",[ReaderName5555]),
 
 lager:info("finished").
