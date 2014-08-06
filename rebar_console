@@ -1,7 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
-setopt extendedglob
-
-./rebar -C rebar.config clean
 ./rebar -C rebar.config compile
-erl -pa ebin deps/**/ebin -s lager 
+erl -pa ebin deps/*/ebin -s lager 
