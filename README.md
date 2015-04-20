@@ -4,9 +4,9 @@ riak2.0.example
 
 #### Create and activate bucket type "maps"
 ```
-riak-admin bucket-type create maps '{"props":{"datatype":"map"}}'
+sudo riak-admin bucket-type create maps '{"props":{"datatype":"map"}}'
 
-riak-admin bucket-type activate maps
+sudo riak-admin bucket-type activate maps
 ```
 
 More information on data types.
